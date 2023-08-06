@@ -3,6 +3,9 @@ import Header from "./components/header";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Container } from "postcss";
+import { Fragment } from "react";
+import CardModal from "./components/card-modal";
+import { ModalContextProvider } from "./components/modal-context";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="relative bg-neutral-50 text-black ">
-
+        <ModalContextProvider>
           <Header />
           <main className="mb-10">{children}</main>
           <footer>
@@ -106,9 +109,13 @@ export default function RootLayout({
             </div>
             <div className="border-t border-neutral-200 py-5 text-base ">
               <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-1 px-4 md:flex-row md:gap-0 md:px-4 xl:px-0">
-                <p className="text-neutral-400  font-medium">© 2023 ACME, Inc. All rights reserved.</p>
+                <p className="text-neutral-400  font-medium">
+                  © 2023 ACME, Inc. All rights reserved.
+                </p>
                 <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
-                <p className=" font-medium text-neutral-400">Designed in California</p>
+                <p className=" font-medium text-neutral-400">
+                  Designed in California
+                </p>
                 <div className="md:ml-auto flex">
                   <p className=" text-neutral-400 font-semibold mr-2">
                     Crafted by
@@ -120,6 +127,8 @@ export default function RootLayout({
               </div>
             </div>
           </footer>
+          <CardModal  />
+        </ModalContextProvider>
       </body>
     </html>
   );

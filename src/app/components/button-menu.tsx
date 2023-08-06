@@ -26,11 +26,14 @@ const MenuOpenButton = () => {
       window.removeEventListener("resize", updateMenuState);
     };
   }, []);
+  // const navStyle={}
   return (
+    
     <nav
       className={`${
-        isMenuOpen ? "flex-col w-full h-screen" : "flex-row justify-between"
+        isMenuOpen ? "flex-col w-full h-full bg-neutral-100  fixed top-0 left-0 right-0 bottom-0 z-10 overflow-hidden" : "flex-row justify-between"
       }   flex  md:flex-row md:items-center  p-4 lg:px-6`}
+      
     >
       <div className="block flex-none md:hidden ">
         <button

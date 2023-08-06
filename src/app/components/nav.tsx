@@ -1,7 +1,15 @@
+'use client'
 import Link from "next/link";
 import React from "react";
+import { useModalContext } from "./modal-context";
 
 export const Nav = ({ isOpenMenu }: { isOpenMenu: boolean }) => {
+  const modalState=useModalContext();
+  console.log(2,modalState);
+  const HandleOpenCard=()=>{
+    modalState.setIsOpen(true)
+  }
+  // const [isCardOpen,setIsCardOpen]=modalState;
   return (
     <div
       className={`${
@@ -114,7 +122,7 @@ export const Nav = ({ isOpenMenu }: { isOpenMenu: boolean }) => {
       {!isOpenMenu && (
         <div className=" flex justify-end w-1/3">
           <div className="flex justify-end md:w-1/3">
-            <button className="">
+            <button className="" onClick={HandleOpenCard}>
               <div className="relative flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
