@@ -12,7 +12,7 @@ const CardModal = () => {
     modalState.setIsOpen(false)
   }
   return (
-   {isVisible}&&( <div className="fixed  inset-0  backdrop-blur-[0.5px] backdrop-brightness-50 flex justify-end">
+   {isVisible}&&( <div className="fixed  transition-all -translate-x-100 delay-1000 ease-in-out inset-0  backdrop-blur-[0.5px] backdrop-brightness-50 flex justify-end">
    <div className=" p-5 flex h-full w-full flex-col bg-neutral-200 fixed bottom-0 right-0 top-0p-6  md:w-1/4 translate-x-0">
      <div className="flex items-center justify-between ">
        <p className="text-lg font-semibold">My Cart</p>
