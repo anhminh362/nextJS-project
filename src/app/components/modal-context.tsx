@@ -23,12 +23,15 @@ export const useModalContext = (): ModalState => {
 
   return context;
 };
-export const ModalContextProvider = ({children}:{children:React.ReactNode}) => {
-    // const [theme, setTheme] = useState<Themes>("system");
-    const [isOpen, setIsOpen ]=useState(false)
-    return (
-      <ModalContext.Provider value={{ isOpen, setIsOpen }}>
-        {children}
-      </ModalContext.Provider>
-    );
-  };
+export const ModalContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <ModalContext.Provider value={{ isOpen, setIsOpen }}>
+      {children}
+    </ModalContext.Provider>
+  );
+};

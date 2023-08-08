@@ -1,21 +1,23 @@
-'use client'
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { useModalContext } from "./modal-context";
+import { CartContext } from "./cart-context";
 
 export const Nav = ({ isOpenMenu }: { isOpenMenu: boolean }) => {
-  const modalState=useModalContext();
-  console.log(2,modalState);
-  const HandleOpenCard=()=>{
-    modalState.setIsOpen(true)
-  }
-  // const [isCardOpen,setIsCardOpen]=modalState;
+  const modalState = useModalContext();
+  const list = useContext(CartContext);
+  // console.log('csf',list.cart.length===0);
+  const count = list.cart.length;
+  const HandleOpenCard = () => {
+    modalState.setIsOpen(true);
+  };
+  const NavLink = ["All", "Shirts", "Stickers"];
   return (
     <div
       className={`${
         isOpenMenu ? " flex-col-reverse" : ""
       } flex gap-9 md:flex-row w-full md:items-center `}
-      //   className="flex flex-col-reverse gap-9 md:flex-row w-full md:items-center "
       id="navbar-default"
       tabIndex={-1}
       aria-hidden={!isOpenMenu}
@@ -51,36 +53,20 @@ export const Nav = ({ isOpenMenu }: { isOpenMenu: boolean }) => {
               : "hidden  text-neutral-500 text-base "
           } gap-6 md:flex md:items-center `}
         >
-          <li>
-            <Link
-              href={"/"}
-              className={
-                isOpenMenu
-                  ? "  hover:text-neutral-500"
-                  : " underline-offset-4 hover:text-black hover:underline"
-              } 
-            >
-              All
-            </Link>
-          </li>
-          <li>
-            <Link href={"/"} className={
-                isOpenMenu
-                  ? "  hover:text-neutral-500"
-                  : " underline-offset-4 hover:text-black hover:underline"
-              } >
-              Shirts
-            </Link>
-          </li>
-          <li>
-            <Link href={"/"} className={
-                isOpenMenu
-                  ? "  hover:text-neutral-500"
-                  : " underline-offset-4 hover:text-black hover:underline"
-              } >
-              Stickers
-            </Link>
-          </li>
+          {NavLink.map((x) => (
+            <li>
+              <Link
+                href={`/product/${x}`}
+                className={
+                  isOpenMenu
+                    ? "  hover:text-neutral-500"
+                    : " underline-offset-4 hover:text-black hover:underline"
+                }
+              >
+                {x}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
       <div
@@ -139,9 +125,11 @@ export const Nav = ({ isOpenMenu }: { isOpenMenu: boolean }) => {
                     d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
                   ></path>
                 </svg>
-                <div className="absolute right-0 top-0 -mr-2 -mt-2 h-4 w-4 rounded bg-blue-600 text-[11px] font-medium text-white">
-                  1
-                </div>
+                {count > 0 && (
+                  <div className="absolute right-0 top-0 -mr-2 -mt-2 h-4 w-4 rounded bg-blue-600 text-[11px] font-medium text-white">
+                    {count}
+                  </div>
+                )}
               </div>
             </button>
           </div>
