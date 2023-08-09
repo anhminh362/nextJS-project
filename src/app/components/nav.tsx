@@ -7,7 +7,6 @@ import { CartContext } from "./cart-context";
 export const Nav = ({ isOpenMenu }: { isOpenMenu: boolean }) => {
   const modalState = useModalContext();
   const list = useContext(CartContext);
-  // console.log('csf',list.cart.length===0);
   const count = list.cart.length;
   const HandleOpenCard = () => {
     modalState.setIsOpen(true);
@@ -53,17 +52,17 @@ export const Nav = ({ isOpenMenu }: { isOpenMenu: boolean }) => {
               : "hidden  text-neutral-500 text-base "
           } gap-6 md:flex md:items-center `}
         >
-          {NavLink.map((x) => (
+          {NavLink.map((tab) => (
             <li>
               <Link
-                href={`/product/${x}`}
+                href={`/product/${tab}`}
                 className={
                   isOpenMenu
                     ? "  hover:text-neutral-500"
                     : " underline-offset-4 hover:text-black hover:underline"
                 }
               >
-                {x}
+                {tab}
               </Link>
             </li>
           ))}

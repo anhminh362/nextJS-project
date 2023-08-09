@@ -53,13 +53,13 @@ export default function RootLayout({
                 </div>
                 <nav>
                   <ul>
-                    {NavFooterLink.map((x) => (
+                    {NavFooterLink.map((footerLink) => (
                       <li className="text-neutral-400 font-medium">
                         <Link
-                          href={`/product/${x}`}
+                          href={`/product/${footerLink}`}
                           className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline dark:hover:text-neutral-300 md:inline-block md:text-base"
                         >
-                          {x}
+                          {footerLink}
                         </Link>
                       </li>
                     ))}

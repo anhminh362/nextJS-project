@@ -1,17 +1,15 @@
 "use client";
 import { CartContext } from "@/app/components/cart-context";
-import { useModalContext } from "@/app/components/modal-context";
-// import { ListCartContext } from "@/app/components/list-card-context";
-import React, { useContext, useEffect, useState } from "react";
+// import { useModalContext } from "@/app/components/modal-context";
+import React, { useContext,} from "react";
 
 const AddToCart = ({ item }: { item: any }) => {
-  const listcontext = useContext(CartContext);
-  const list = listcontext.cart;
-  const modalState = useModalContext();
+  const listContext = useContext(CartContext);
+  const list = listContext.cart;
   const HandleAddToCartButton = () => {
     const count = 1;
     if (list.length === 0)
-      return listcontext.setCart([
+      return listContext.setCart([
         {
           id: item.selectedItem.color + "_" + item.selectedItem.size,
           color: item.selectedItem.color,
@@ -23,10 +21,9 @@ const AddToCart = ({ item }: { item: any }) => {
       (i: any) =>
         i.id === item.selectedItem.color + "_" + item.selectedItem.size
     );
-    console.log("indexSelectedItem", indexSelectedItem);
 
     if (indexSelectedItem === -1) {
-      listcontext.setCart([
+      listContext.setCart([
         ...list,
         {
           id: item.selectedItem.color + "_" + item.selectedItem.size,
@@ -36,7 +33,7 @@ const AddToCart = ({ item }: { item: any }) => {
         },
       ]);
     } else {
-      listcontext.setCart(
+      listContext.setCart(
         list.map((i:any) => {
           if (i.id === item.selectedItem.color + "_" + item.selectedItem.size) {
             i.qty += 1;
@@ -46,7 +43,6 @@ const AddToCart = ({ item }: { item: any }) => {
         })
       );
     }
-    // modalState.setIsOpen(true);
   };
   return (
     <button

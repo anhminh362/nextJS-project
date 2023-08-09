@@ -1,10 +1,5 @@
 "use client";
-import CartContextProvider, {
-  CartContext,
-} from "@/app/components/cart-context";
-import React, { useContext, useMemo, useState } from "react";
-
-type Size = [{ name: string; amount: number }];
+import React, { useState } from "react";
 
 export const Button = ({
   name,
@@ -41,19 +36,19 @@ export const Button = ({
   );
 };
 export const ButtonGroup = ({
-  items,
+  listItems,
   type,
-  selectedItem,
+  items,
 }: {
-  items: Array<any>;
+  listItems: Array<any>;
   type: string;
-  selectedItem: any;
+  items: any;
 }) => {
   const [currentButtonSize, setCurrentButtonSize] = useState("");
   const [currentButtonColor, setCurrentButtonColor] = useState("");
 
   return type === "size"
-    ? items.map((item) => (
+    ? listItems.map((item) => (
         <Button
           name={item.value}
           key={item.value}
@@ -61,14 +56,14 @@ export const ButtonGroup = ({
           isActive={item.value === currentButtonSize}
           onClick={() => {
             setCurrentButtonSize(item.value);
-            selectedItem.setSelectedItem({
-              ...selectedItem.selectedItem,
+            items.setSelectedItem({
+              ...items.selectedItem,
               size: item.value,
             });
           }}
         />
       ))
-    : items.map((item) => (
+    : listItems.map((item) => (
         <Button
           key={item.color}
           name={item.color}
@@ -76,8 +71,8 @@ export const ButtonGroup = ({
           isActive={item.color === currentButtonColor}
           onClick={() => {
             setCurrentButtonColor(item.color);
-            selectedItem.setSelectedItem({
-              ...selectedItem.selectedItem,
+            items.setSelectedItem({
+              ...items.selectedItem,
               color: item.color,
             });
           }}

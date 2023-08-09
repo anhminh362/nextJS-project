@@ -1,10 +1,13 @@
 "use client";
 import React, { createContext, useState } from "react";
 
-
-export const CartContext = createContext<Array<any>>([]);
+type Cart={
+  cart:any,
+  setCart:()=>{}
+}
+export const CartContext = createContext<any>([]);
 const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<any>([]);
   return (
     <CartContext.Provider value={{ cart, setCart }}>
       {children}

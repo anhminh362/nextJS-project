@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { ButtonGroup } from "../../../ui/button";
-// import AddToCart from "../../../ui/Button-add-to-cart";
 import { Product } from "../page";
 import AddToCart from "../../../ui/Button-add-to-cart";
 
@@ -15,7 +14,6 @@ export default function Products({ item }: { item: object }) {
   const HandleNextImgClick = () => {
     nextImg === img[0] ? setNextImg(img[1]) : setNextImg(img[0]);
   };
-  const [isActive, setIsActive] = useState(false);
   return (
     <div className="mx-auto max-w-screen-2xl px-4 ">
       <div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-black md:p-12 lg:flex-row">
@@ -142,8 +140,8 @@ export default function Products({ item }: { item: object }) {
             <div className="flex flex-wrap gap-3 mb-6">
               <ButtonGroup
                 type="color"
-                items={Product.quantity}
-                selectedItem={item}
+                listItems={Product.quantity}
+                items={item}
               />
             </div>
           </div>
@@ -152,8 +150,8 @@ export default function Products({ item }: { item: object }) {
             <div className="flex flex-wrap gap-3 mb-6">
               <ButtonGroup
                 type="size"
-                items={Product.quantity[0].size}
-                selectedItem={item}
+                listItems={Product.quantity[0].size}
+                items={item}
               />
             </div>
           </div>
